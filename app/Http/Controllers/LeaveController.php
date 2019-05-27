@@ -70,14 +70,14 @@ class LeaveController extends Controller
         $leaves->reason = $request->reason;
         $leaves->user_id = $request->user_id;
         $leaves->full_name = $request->full_name;
-        if($request->startdate && $request->enddate){
+        if($request->onedate){
+            $leaves->total = '1';
+        }else{
             if($diffTime <= 4){
                 $leaves->total = '0.5';
             }else{
                 $leaves->total = $diffDate + 1;
             } 
-        }else{
-            $leaves->total = '1';
         }
      
         $leaves->status = 'PENDING';

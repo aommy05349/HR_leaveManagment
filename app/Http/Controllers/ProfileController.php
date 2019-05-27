@@ -82,8 +82,10 @@ class ProfileController extends Controller
             $users->password = bcrypt($request->password);
         }
 		$users->username = $request->username;
+		$users->full_name = $request->fullname;
+		$users->nick_name = $request->nickname;
 		$users->email = $request->email;
-		$users->start_working_date = $request->start_working_date;
+		$users->birthdate = !empty($request->birthdate)? $request->birthdate : null;
         $validated = $request->validated();
         $users->save();
         return response()->json(['data'=>['users_id'=>$users->id]]) ;

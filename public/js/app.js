@@ -123,7 +123,7 @@ var App = function(){
                             
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
-                            App.showBoxError(textStatus, 'error');
+                            App.showBoxError(textStatus, 'error', errorThrown);
                         }
                     });
                 }, 100);  

@@ -1,9 +1,27 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Human Resource Managment</title>
+  
+  <link rel="stylesheet" href="{{ url('css/materialdesignicons.css') }}" />     
+    <link rel="stylesheet" href="{{ url('css/font-awesome.css') }}"  />     
+    <link rel="stylesheet" href="{{ url('css/vendor.bundle.addons.css') }}"  />     
+    <link rel="stylesheet" href="{{ url('css/vendor.bundle.base.css') }}"  />     
+    <link rel="stylesheet" href="{{ url('css/style.css') }}"  />     
+    {{-- <link rel="stylesheet" href="{{ url('css/styles1.css') }}"  />      --}}
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+</head>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<body>
+    <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
+      <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+        <div class="row w-100">
+          <div class="col-lg-5 mx-auto">
+            <div class="auto-form-wrapper">
+              
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
@@ -14,7 +32,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
+                    <form method="POST" action="{{ url('password/email') }}" aria-label="{{ __('Reset Password') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -41,7 +59,31 @@
                     </form>
                 </div>
             </div>
+
+            </div>
+            <ul class="auth-footer">
+              <li>
+                <a href="#">Conditions</a>
+              </li>
+              <li>
+                <a href="#">Help</a>
+              </li>
+              <li>
+                <a href="#">Terms</a>
+              </li>
+            </ul>
+            <p class="footer-text text-center">copyright © 2018 Bootstrapdash. All rights reserved.</p>
+          </div>
         </div>
+      </div>
+      <!-- content-wrapper ends -->
     </div>
-</div>
-@endsection
+
+
+  
+  
+</body>
+
+</html>
+
+        

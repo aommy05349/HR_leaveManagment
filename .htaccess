@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine On 
+   RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+<Limit GET POST PUT DELETE OPTIONS> 
+   #Apache 2.2 
+   order deny,allow 
+   allow from all 
+   #Apache 2.4+ 
+   Require all granted 
+</Limit>

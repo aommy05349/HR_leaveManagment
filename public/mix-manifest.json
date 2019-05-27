@@ -31,6 +31,5 @@
     "/css/jquery.datetimepicker.min.css": "/css/jquery.datetimepicker.min.css",
     "/css/dataTables.bootstrap4.min.css": "/css/dataTables.bootstrap4.min.css",
     "/css/jquery-ui-1.10.4.custom.min.css": "/css/jquery-ui-1.10.4.custom.min.css",
-    "/css/sweetalert2.min.css": "/css/sweetalert2.min.css",
-    "/css/dropzone.min.css": "/css/dropzone.min.css"
+    "/css/sweetalert2.min.css": "/css/sweetalert2.min.css"
 }

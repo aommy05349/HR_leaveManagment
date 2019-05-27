@@ -21,7 +21,7 @@ class Users extends Authenticatable implements HasMedia
         'full_name', 'email', 'password','username','lavel'
     ];
     protected $dates = [
-        'birthdate','start_working_date','stop_working_date'
+        'birthdate',
     ];
    
     public function registerMediaConversions(Media $media = null)

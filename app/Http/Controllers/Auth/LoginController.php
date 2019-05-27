@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Models\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     /*
@@ -25,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -36,17 +39,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    protected function redirectTo()
-    {
-        if(auth()->user()->isAdmin()) {
-            return '/admin/dashboard';
-        } else if (auth()->user()->isEmployee()){
-            return '/employee/dashboard';
-        }else if (auth()->user()->isProjectOwner()){
-            return '/projectowner/dashboard';
-        }else {
-            return '/home';
-        }
+    public function username(){
+        \Log::info( request()->input('username'));
+        $loginType = request()->input('username');
+        $this->username = filter_var($loginType,FILTER_VALIDATE_EMAIL)?'email':'username';
+        request()->merge([$this->username =>$loginType]);
+        return property_exists($this,'username') ? $this->username :'email';
     }
+    public function loguot(){
+        Auth::logout();
+        return redirect('/login');
+    }
+    
 }

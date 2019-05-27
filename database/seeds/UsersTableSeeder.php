@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
                 'level' => 'ADMIN',
                 'birthdate' => '2018-12-30',
                 'start_working_date' => '2018-12-30',
-                'stop_working_date' => null,
+                'stop_working_date' => '2018-12-30',
                 'status' => 'Working',
                 'position' => 'PHP Programmer',
                 'rank' => '- No Ranking -',

@@ -27,8 +27,7 @@ class UserConfigurationRequest extends FormRequest
         if($this->method()=='PUT'){
                 $rules = [
                     'username' => 'required|min:6',
-                    'email'=> 'required|email',  
-                    'start_working_date' => 'required'        
+                    'email'=> 'required|email',           
                 ];
                 if ($this->request != null && sizeof($this->all()) > 0){ 
                     $user = Users::where('id',$this->user_id)->firstOrFail();
@@ -46,8 +45,7 @@ class UserConfigurationRequest extends FormRequest
                 $rules = [
                     'username' => 'required|min:6',
                     'email'=> 'required|email',
-                    'password' => 'required|confirmed|min:6',   
-                    'start_working_date' => 'required'        
+                    'password' => 'required|confirmed|min:6',          
                 ];
                 if ($this->request != null && sizeof($this->all()) > 0){ 
                     $users = Users::all();

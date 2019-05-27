@@ -10,47 +10,106 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
+Route::get('logout', 'Auth\LoginController@logout');
 
-//Route for normal user
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index');
-});
+// password reset 
+route::get('password/reset/{token?}','Auth\ResetPasswordController@showResetForm');
+route::post('password/reset','Auth\ResetPasswordController@reset');
+route::post('password/email','Auth\ResetPasswordController@sendResetLinkEmail');
+route::get('password/reset','Auth\ResetPasswordController@resetPass');
 
-//-----------------Route for admin------------------------
 
-    Route::group(['prefix' => 'admin'], function(){
-        Route::group(['middleware' => ['admin']], function(){
-            Route::get('/dashboard', 'admin\AdminController@index');
+route::get('users/data','UserController@data');
+route::post('uploadimage','UserController@uploadImage');
+route::get('deleteImg/{id}','UserController@deleteAvatar');
 
- //------------- Admin Manage Employee--------------------------
-            Route::get('/employee', 'admin\AdminController@empList');
-            Route::get('/add_employee', 'admin\AdminController@storeEmployeeForm');
+route::resource('user','UserController');
+
+
+route::post('/uploadLeaveFile','LeaveController@uploadLeaveFile');
+route::put('/diffdays/{id}','LeaveController@storeDiffDate');
+route::get('/leaves/data','LeaveController@data');
+route::put('/leave/{id}','LeaveController@updateTotalLeave');
+route::resource('/leave/','LeaveController');
+
+route::post('uploadfile','LeaveController@uploadfile');
+
+route::put('/leaveApp1/{id}','LeaveAppController@leavesReject');
+route::put('/leaveApp/{id}','LeaveAppController@leavesAccept');
+route::put('/sendMailtoApprove','LeaveAppController@sendMailtoApprove');
+
+route::get('/leaveApp/data','LeaveAppController@data');
+route::resource('/leaveApp','LeaveAppController');
+
+route::get('/deleteProfile/{id}','ProfileController@deleteProfile');
+route::post('/uploadprofile','ProfileController@uploadprofile');
+route::get('/profile/{id}','ProfileController@manageProfile');
+route::resource('/profile','ProfileController');
+/*
+|--------------------------------------------------------------------------
+| server 
+|--------------------------------------------------------------------------
+|
+*/
+
+
+        //Clear Cache facade value:
+        Route::get('clear-cache', function() {
+            $exitCode = Artisan::call('cache:clear');
+            return '<h1>Cache facade value cleared</h1>';
         });
-    });
-    
-//Route for employee
 
-    Route::group(['prefix' => 'employee'], function(){
-        Route::group(['middleware' => ['employee']], function(){
-            Route::get('/dashboard', 'employee\EmployeeController@index');
+        //Reoptimized class loader:
+        Route::get('optimize', function() {
+            $exitCode = Artisan::call('optimize');
+            return '<h1>Reoptimized class loader</h1>';
         });
-    });
-    
-//Route for Project Owner
 
-    Route::group(['prefix' => 'projectowner'], function(){
-        Route::group(['middleware' => ['projectowner']], function(){
-            Route::get('/dashboard', 'projectowner\ProjectOwnerController@index');
+        //Route cache:
+        Route::get('route-cache', function() {
+            $exitCode = Artisan::call('route:cache');
+            return '<h1>Routes cached</h1>';
         });
-    });
 
-    
-    
+        //Clear Route cache:
+        Route::get('route-clear', function() {
+            $exitCode = Artisan::call('route:clear');
+            return '<h1>Route cache cleared</h1>';
+        });
+
+        //Clear View cache:
+        Route::get('view-clear', function() {
+            $exitCode = Artisan::call('view:clear');
+            return '<h1>View cache cleared</h1>';
+        });
+
+        //Clear Config cache:
+        Route::get('config-cache', function() {
+            $exitCode = Artisan::call('config:cache');
+            return '<h1>Clear Config cleared</h1>';
+        });
+
+        //Migrate Database
+        Route::get('migrate', function() {
+            $exitCode = Artisan::call('migrate');
+            return '<h1>Migrated</h1>';
+        });
+
+        
+
+         //Link storage to public folder
+         Route::get('storage-link', function() {
+            $exitCode = Artisan::call('storage:link');
+            return '<h1>Linked</h1>';
+        });
+
+        //Link storage to public folder
+        Route::get('db-seeder', function() {
+            $exitCode = Artisan::call('db:seed');
+            return '<h1>Linked</h1>';
+        });
+
+        
